@@ -1,26 +1,47 @@
-type Student ={
-    id:string,
-    name:string,
+export type Grade = number | "A" | "B" | "C" | "D" | "E" | "F" | undefined;
+export type Student={
+    firstName:string,
+    lastName:string,
     age:number
+    grades:Grade[]
+    //displayInfo(): string;
+};
+//displayStudent Info
+function displayInfo(student:Student){
+    console.log(`${student.firstName} ${student.lastName} ${student.age},
+    Grades:${student.grades.map(grade => grade ? grade : '*').join(',')}`)
 }
 
-//interface
-interface StudentInterface {
-    id:string,
-    name:string,
-    age:number
+//print allStudents
 
+function displayAllStudents(students:Student[]){
+    students.forEach(student => displayInfo(student))
 }
 
-
-const student1:Student = {
-    id:"1",
-    name:"John",
-    age:20,
-
+//create Students
+const student1:Student={
+    firstName:"Marry",
+    lastName:"John",
+    age:25,
+    grades: ["A", 2, "C", "D", 6, undefined],
 }
 
-interface StudentInterface{
-    phone:string
+const student2:Student = {
+    firstName:"Jerry",
+    lastName:"Max",
+    age:54,
+    grades: ["B", 4, "F", "D", 3, undefined]
 }
-console.log(student1)
+
+const student3:Student = {
+    firstName:"Anton",
+    lastName:"Scholz",
+    age:36,
+    grades: ["E", 5, "C", "D", 1, undefined]
+}
+
+const students:Student[]=[student1,student2,student3]
+
+displayAllStudents(students)
+
+
